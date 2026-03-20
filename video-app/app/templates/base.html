@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}negozio online{% endblock %}</title>
+    <style>
+        body { font-family: sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: blue; }
+        hr { border: 0; border-top: 1px solid #ccc; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f2f2f2; }
+        .flash { color: red; border: 1px solid red; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('main.index') }}">Categorie</a>
+        <a href="{{ url_for('main.crea_categoria') }}">Nuova Categoria</a>
+        <a href="{{ url_for('main.crea_prodotto') }}">Nuovo Prodotto</a>
+        <a href="{{ url_for('main.ricerca') }}">Ricerca</a>
+        <a href="{{ url_for('main.statistiche') }}">Statistiche</a>
+    </nav>
+    <hr>
+
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <hr>
+    <footer>
+        <small>&copy; 2024 - Board Game App</small>
+    </footer>
+</body>
+</html>

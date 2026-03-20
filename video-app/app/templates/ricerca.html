@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>ricerca prodotti</h1>
+
+<form method="post">
+    <label for="search_term">cerca per nome:</label><br>
+    <input name="search_term" id="search_term" value="{{ search_term }}"><br><br>
+    <input type="submit" value="Cerca">
+</form>
+
+{% if request.method == 'POST' %}
+    <h2>Risultati</h2>
+    {% if results %}
+    <table>
+        <tr>
+            <th>prodotto</th>
+            <th>categoria</th>
+            <th>prezzo</th>
+        </tr>
+        {% for product in results %}
+        <tr>
+            <td>{{ product['nome'] }}</td>
+            <td><a href="{{ url_for('main.categoria_detail', id=product['categoria_id']) }}">
+                {{ product['categoria'] }}
+            </a></td>
+            <td>{{ "%"|format(product['prezzo']) }}</td>
+        </tr>
+        {% endfor %}
+{% endif %}
+{% endblock %}

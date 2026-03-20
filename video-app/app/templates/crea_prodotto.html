@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>nuovo prodotto</h1>
+<form method="post">
+    <label for="categoria_id">Categoria</label><br>
+    <select name="categoria_id" id="categoria_id">
+        <option value="">seleziona una categoria</option>
+        {% for category in categories %}
+        <option value="{{ category['id'] }}">{{ category['nome'] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label for="nome">nome prodotto</label><br>
+    <input name="nome" id="nome" ><br><br>
+
+    <label for="prezzo">Prezzo</label><br>
+    <input name="prezzo" id="prezzo" type="numero"><br><br>
+
+    <input type="submit" value="crea prodotto">
+</form>
+{% endblock %}

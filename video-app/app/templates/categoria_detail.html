@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Categoria: {{ category['nome'] }}</h1>
+
+<h2>Prodotti</h2>
+{% if products %}
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Prezzo</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product['nome'] }}</td>
+        <td>{{ "%"|format(product['prezzo']) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>nessun prodotto per questa categoria</p>
+{% endif %}
+
+<p><a href="{{ url_for('main.index') }}">torna alle categorie</a></p>
+{% endblock %}
